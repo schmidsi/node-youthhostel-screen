@@ -19,6 +19,8 @@ app.locals.env = app.settings.env
 
 app.use express.static(__dirname + '/dist')
 
+app.use '/lib', express.static(__dirname + '/node_modules')
+
 # Until the image optimisation process isn't implemented, hack it like this:
 app.use '/img', express.static(__dirname + '/frontend/images')
 
@@ -32,6 +34,7 @@ app.get '/', (req, res) ->
     return res.render('index')
 
 app.get '/admin', require('./controllers/admin/dashboard')
+
 
 if not module.parent
     mongoose.connect(MONGO_URI)
