@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title Youthhostel Screen Admin
+        link(rel='stylesheet', href='/css/main.css')
+        script(src='/lib/foundation-sites/js/vendor/modernizr.js')
+
+    body
+        nav.top-bar(data-topbar)
+            ul.title-area
+                li.name
+                    h1
+                        a(href="/admin/") Youthhostel Screen Control Room
+                li.toggle-topbar.menu-icon
+                    a(href='#')
+                        span Menu
+
+            section.top-bar-section
+                ul.right
+                    li.divider
+                    li
+                        a(href='/admin/screens') Screens
+                    li.divider
+                    li
+                        a(href='/admin/images') Images
+                    li.divider
+                    li
+                        a(href='/admin/users') Users
+                    li.divider
+
+        block content
+
+        script(src='/lib/foundation-sites/js/vendor/jquery.js')
+        script(src='/lib/foundation-sites/js/vendor/fastclick.js')
+        script(src='/lib/foundation-sites/js/foundation.js')
+        script.
+            $(document).foundation()

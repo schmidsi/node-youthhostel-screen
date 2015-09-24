@@ -99,7 +99,9 @@ gulp.task 'stylus', ->
 
 gulp.task 'sass', ->
     gulp.src(paths.sass.watch)
-    .pipe sass().on('error', notify.onError('SASS Error: <%= error.message %>'))
+    .pipe sass
+        includePaths: ['node_modules/foundation-sites/scss']
+    .on('error', notify.onError('SASS Error: <%= error.message %>'))
     .pipe gulp.dest(paths.dist.css)
     .pipe browserSync.reload(stream: true)
 

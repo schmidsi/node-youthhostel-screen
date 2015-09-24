@@ -33,7 +33,7 @@ app.use require('flash')()
 app.get '/', (req, res) ->
     return res.render('index')
 
-app.get '/admin', require('./controllers/admin/dashboard')
+app.use '/admin', require('./controllers/admin/dashboard')
 
 
 if not module.parent
