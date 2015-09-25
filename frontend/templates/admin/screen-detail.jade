@@ -33,6 +33,22 @@ block content
 
             .small-8.columns
                 #location-map
+        .row
+            hr
+            div(data-hook='panel-hook')
+        .row
+            .small-3.columns
+                button.button.dropdown(data-dropdown='add-panels') Add panel
+                ul#add-panels.f-dropdown
+                    li
+                        a(data-cmd='add-text-panel') Text Panel
+                    li
+                        a (Image Panel)
+                    li
+                        a (Gallery Panel)
+                    li
+                        a (... Panel)
+
 
         .row
             hr
