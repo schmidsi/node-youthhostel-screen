@@ -16,9 +16,10 @@ paths =
     jade:   ['./frontend/templates/**/*.jade'] # <%= frontendDir %>
     sass:
         watch:      ['./frontend/styles/**/*.sass']
+        includes:   ['./bower_components', './node_modules']
     coffee:
         path:       './frontend/scripts/**/*.coffee'
-        main:       './frontend/scripts/main.coffee'
+        main:       './frontend/scripts/admin.coffee'
     dist:
         html:       './dist'
         js:         './dist/js/'
@@ -100,7 +101,7 @@ gulp.task 'stylus', ->
 gulp.task 'sass', ->
     gulp.src(paths.sass.watch)
     .pipe sass
-        includePaths: ['node_modules/foundation-sites/scss']
+        includePaths: paths.sass.includes
     .on('error', notify.onError('SASS Error: <%= error.message %>'))
     .pipe gulp.dest(paths.dist.css)
     .pipe browserSync.reload(stream: true)

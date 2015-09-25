@@ -20,6 +20,7 @@ app.locals.env = app.settings.env
 app.use express.static(__dirname + '/dist')
 
 app.use '/lib', express.static(__dirname + '/node_modules')
+app.use '/lib', express.static(__dirname + '/bower_components')
 
 # Until the image optimisation process isn't implemented, hack it like this:
 app.use '/img', express.static(__dirname + '/frontend/images')

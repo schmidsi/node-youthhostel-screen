@@ -31,10 +31,8 @@ html(lang='en')
                         a(href='/admin/users') Users
                     li.divider
 
-        block content
+        .content
+            block content
 
-        script(src='/lib/foundation-sites/js/vendor/jquery.js')
-        script(src='/lib/foundation-sites/js/vendor/fastclick.js')
-        script(src='/lib/foundation-sites/js/foundation.js')
-        script.
-            $(document).foundation()
+        script(src='http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places')
+        script(src='/js/bundle.js')

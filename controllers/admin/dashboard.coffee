@@ -9,5 +9,7 @@ router = express.Router()
 router.get '/', (req, res) ->
     return res.render('admin/dashboard')
 
+router.get '/screens/add', (req, res) ->
+    return res.render('admin/screen-detail')
 
 module.exports = router
