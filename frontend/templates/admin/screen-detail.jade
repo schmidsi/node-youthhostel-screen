@@ -6,25 +6,30 @@ block content
         .small-12.columns
             h1 New Screen
 
-    form
+    form(method='POST')
         .row
             .small-12.columns
                 label Name
-                    input(type='text' placeholder='Name for the screen')
+                    input(type='text' name='name' placeholder='Name for the screen' required)
         .row
             .small-12.columns
                 label Description
-                    textarea(placeholder='Description for the screen (where is it, whats the purpose, etc.)')
+                    textarea(name='description' placeholder='Description for the screen (where is it, whats the purpose, etc.)')
 
         .row
             .small-12.columns
                 label(for='location') Location (used for weather forecast)
             .small-4.columns
-                input(type='text' id='location' placeholder='Enter city')
+                input(type='text' id='location' placeholder='Enter city' name='location.name')
                 label Longitude
-                    input(type='text' name='lng' disabled)
+                    input(type='text' disabled name='location.coords.lng')
                 label Latitude
-                    input(type='text' name='lat' disabled)
+                    input(type='text' disabled name='location.coords.lat')
 
             .small-8.columns
                 #location-map
+
+        .row
+            .small-12.columns
+                button(type=submit) Save
+
