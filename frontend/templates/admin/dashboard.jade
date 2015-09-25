@@ -7,11 +7,15 @@ block content
         table.small-12
             thead
                 tr
-                    th.small-11 Location
+                    th.small-5 Name
+                    th.small-6 Location
                     th.small-1
                         a.button.tiny.round.icon.success.fi-plus(href='/admin/screens/add')
             tbody
-                tr
-                    td(colspan=2) Basel
-                tr
-                    td(colspan=2) Test
+                each doc in coll
+                    tr
+                        td
+                            a(href="/admin/screens/#{ doc.id }")= doc.name
+                        td(colspan=2)
+                            a(href="/admin/screens/#{ doc.id }")= doc.location.name
+

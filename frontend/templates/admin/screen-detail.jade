@@ -4,32 +4,44 @@ extends _layout
 block content
     .row
         .small-12.columns
-            h1 New Screen
+            if doc.isNew
+                h1 New Screen
+            else
+                h1 Edit Screen
 
     form(method='POST')
+        input(type='hidden' value=doc.id name='_id')
+
         .row
             .small-12.columns
                 label Name
-                    input(type='text' name='name' placeholder='Name for the screen' required)
+                    input(type='text' name='name' placeholder='Name for the screen' required value=doc.name)
         .row
             .small-12.columns
                 label Description
-                    textarea(name='description' placeholder='Description for the screen (where is it, whats the purpose, etc.)')
+                    textarea(name='description' value=doc.description placeholder='Description for the screen (where is it, whats the purpose, etc.)')
 
         .row
             .small-12.columns
                 label(for='location') Location (used for weather forecast)
             .small-4.columns
-                input(type='text' id='location' placeholder='Enter city' name='location.name')
+                input(type='text' id='location' placeholder='Enter city' name='location.name' value=doc.location.name)
                 label Longitude
-                    input(type='text' disabled name='location.coords.lng')
+                    input(type='text' readonly name='location.coords.lng' value=doc.location.coords.lng)
                 label Latitude
-                    input(type='text' disabled name='location.coords.lat')
+                    input(type='text' readonly name='location.coords.lat' value=doc.location.coords.lat)
 
             .small-8.columns
                 #location-map
 
         .row
-            .small-12.columns
-                button(type=submit) Save
+            hr
+            .small-2.columns
+                button(type='submit' name='action' value='save') Save
+            .small-3.columns
+                button(type='submit' name='action' value='save-back') Save & back
+
+            if !doc.isNew
+                .small-2.columns
+                    button.alert.tiny(type='submit' name='action' value='delete') Delete
 

@@ -10,29 +10,48 @@ require 'typeahead-addresspicker/dist/typeahead-addresspicker.js'
 $ ->
     $(document).foundation()
 
-    addressPicker = new AddressPicker
-        map:
-            id: '#location-map'
-            zoom: 7
-            center: new google.maps.LatLng(46.8131873,8.2242101)
-        marker:
-            draggable: false
-        autocompleteService:
-            types: ['(cities)']
-            componentRestrictions: country: 'CH'
 
-    $('#location').typeahead {
-        highlight: true
-    }, {
-        displayKey: 'description'
-        source: addressPicker.ttAdapter()
-    }
 
-    $('#location').bind('typeahead:selected',      addressPicker.updateMap);
-    $('#location').bind('typeahead:cursorchanged', addressPicker.updateMap);
+    if $('#location-map').length
 
-    addressPicker.bindDefaultTypeaheadEvent($('location'))
+        $lng = $('input[name="location.coords.lng"]')
+        $lat = $('input[name="location.coords.lat"]')
 
-    $(addressPicker).on 'addresspicker:selected', (event, result) ->
-        $('input[name=lng]').val( result.lng() )
-        $('input[name=lat]').val( result.lat() )
+        marker = draggable: false
+
+        if $lat.val() and $lng.val()
+            zoom = 11
+            center = new google.maps.LatLng( $lat.val(), $lng.val() )
+            marker.visible = true
+            marker.position = center
+        else
+            zoom = 7
+            center = new google.maps.LatLng(46.8131873,8.2242101)
+
+        addressPicker = new AddressPicker
+            map:
+                id: '#location-map'
+                zoom: zoom
+                center: center
+            marker: marker
+            autocompleteService:
+                types: ['(cities)']
+                componentRestrictions: country: 'CH'
+
+        $('#location').typeahead {
+            highlight: true
+        }, {
+            displayKey: 'description'
+            source: addressPicker.ttAdapter()
+        }
+
+        $('#location').bind('typeahead:selected',      addressPicker.updateMap);
+        $('#location').bind('typeahead:cursorchanged', addressPicker.updateMap);
+
+        addressPicker.bindDefaultTypeaheadEvent( $('location') )
+
+        $(addressPicker).on 'addresspicker:selected', (event, result) ->
+            console.log( result )
+
+            $lng.val( result.lng() )
+            $lat.val( result.lat() )
